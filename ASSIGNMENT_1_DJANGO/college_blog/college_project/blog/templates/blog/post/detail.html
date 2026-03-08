@@ -1,0 +1,111 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+
+<style>
+body {
+    background: linear-gradient(to right, #dbeafe, #f0f9ff);
+}
+
+.post-container {
+    width: 70%;
+    margin: 40px auto;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    transition: 0.3s;
+}
+
+.post-container:hover {
+    transform: scale(1.01);
+}
+
+h2 {
+    text-align: center;
+    color: #1e3a8a;
+    margin-bottom: 15px;
+}
+
+.meta {
+    text-align: center;
+    color: #555;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.post-body {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #333;
+    margin-top: 20px;
+}
+
+.back-btn {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 8px 16px;
+    background-color: #3b82f6;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+}
+
+.back-btn:hover {
+    background-color: #1e40af;
+}
+
+.tags span{
+    background:#e0f2fe;
+    padding:4px 8px;
+    border-radius:5px;
+    margin-right:6px;
+}
+</style>
+
+
+<div class="post-container">
+
+<h2>{{ post.title }}</h2>
+
+<hr style="width:60%;margin:20px auto;border:1px solid #e5e7eb;">
+
+<div class="meta">
+
+<p>👤 <strong>Author:</strong> {{ post.author }}</p>
+
+<p>📅 <strong>Published:</strong> {{ post.publish }}</p>
+
+<p>⏱ 2 min read</p>
+
+</div>
+
+
+<div class="post-body">
+{{ post.body }}
+</div>
+
+<p class="tags" style="margin-top:20px;">
+🏷️ 
+<span>College</span>
+<span>Campus Life</span>
+<span>Fun</span>
+</p>
+
+
+<hr style="margin:30px 0;border:1px solid #e5e7eb;">
+
+
+<p>
+🔗 Share this post:
+<span style="margin-left:10px;">📘</span>
+<span style="margin-left:10px;">🐦</span>
+<span style="margin-left:10px;">📧</span>
+</p>
+
+
+<a href="/blog/" class="back-btn">⬅ Back to Blog</a>
+
+</div>
+
+{% endblock %}
