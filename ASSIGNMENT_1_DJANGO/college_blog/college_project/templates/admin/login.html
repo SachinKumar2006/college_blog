@@ -1,4 +1,4 @@
-{% extends "admin/login.html" %}
+{% extends "admin/base_site.html" %}
 {% load static %}
 
 {% block content %}
@@ -10,22 +10,22 @@ background:linear-gradient(135deg,#dbeafe,#f0f9ff);
 font-family:Poppins, sans-serif;
 }
 
-.login{
+.login-container{
+width:350px;
+margin:80px auto;
 background:white;
 padding:35px;
 border-radius:12px;
 box-shadow:0 10px 25px rgba(0,0,0,0.1);
-max-width:350px;
-margin:80px auto;
 text-align:center;
 }
 
-.login h1{
+.login-container h1{
 color:#1e3a8a;
-margin-bottom:20px;
+margin-bottom:25px;
 }
 
-.login input{
+input{
 width:100%;
 padding:10px;
 margin-bottom:15px;
@@ -33,7 +33,7 @@ border-radius:6px;
 border:1px solid #cbd5e1;
 }
 
-.submit-row input{
+button{
 width:100%;
 padding:10px;
 background:#2563eb;
@@ -44,12 +44,29 @@ font-weight:bold;
 cursor:pointer;
 }
 
-.submit-row input:hover{
+button:hover{
 background:#1d4ed8;
 }
 
 </style>
 
-{{ block.super }}
+<div class="login-container">
+
+<h1>🎓 Admin Login</h1>
+
+<form method="post">
+{% csrf_token %}
+
+{{ form.username.label_tag }}
+{{ form.username }}
+
+{{ form.password.label_tag }}
+{{ form.password }}
+
+<button type="submit">Login</button>
+
+</form>
+
+</div>
 
 {% endblock %}
