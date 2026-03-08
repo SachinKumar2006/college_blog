@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <title>College Blog</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
 
@@ -99,9 +102,41 @@ footer p{
 margin:4px;
 }
 
+/* 📱 MOBILE RESPONSIVE DESIGN */
+
+@media (max-width:768px){
+
+body{
+padding:15px;
+}
+
+.header h1{
+font-size:28px;
+}
+
+.main-container{
+flex-direction:column;
+}
+
+.content{
+width:100%;
+}
+
+.sidebar{
+width:100%;
+margin-top:20px;
+}
+
+.header div{
+flex-direction:column;
+gap:10px;
+}
+
+}
+
 </style>
 </head>
-<body>
+
 <body>
 
 <div class="header">
@@ -111,16 +146,15 @@ display:flex;
 justify-content:space-between;
 align-items:center;
 margin-bottom:20px;
+flex-wrap:wrap;
 ">
 
 <h1 style="margin:0;">🎓 College Blog</h1>
-<hr>
+
 <div>
-<a href="/" style="margin-right:15px;font-weight:bold;">🏠 Home</a>
-
-<a href="/students/" style="margin-right:15px;font-weight:bold;">🎓 Students</a>
-
-<a href="/admin/" style="font-weight:bold;">⚙ Admin</a>
+<a href="/" style="margin-right:15px;">🏠 Home</a>
+<a href="/students/" style="margin-right:15px;">🎓 Students</a>
+<a href="/admin/">⚙ Admin</a>
 </div>
 
 </div>
@@ -133,7 +167,6 @@ margin-bottom:20px;
 
 </div>
 
-</div>
 <div class="main-container">
 
 <div class="content">
@@ -143,6 +176,7 @@ margin-bottom:20px;
 
 <div class="sidebar">
 <h3>Latest Posts</h3>
+
 {% for post in latest_posts %}
 <p>
 <a href="{{ post.get_absolute_url }}">
@@ -155,26 +189,19 @@ margin-bottom:20px;
 
 </div>
 
-<footer style="
-margin-top:50px;
-padding:20px 0;
-text-align:center;
-font-size:14px;
-color:#334155;
-background:#f8fafc;
-border-top:1px solid #cbd5e1;
-">
+<footer>
 
-<p style="margin:4px;">© 2026 <strong>College Blog</strong></p>
+<p>© 2026 <strong>College Blog</strong></p>
 
-<p style="margin:4px;">
+<p>
 👨‍💻 Designed & Developed by <strong>Sachin Kumar</strong>
 </p>
 
-<p style="margin:6px 0;font-size:13px;color:#64748b;">
+<p style="font-size:13px;color:#cbd5f5;">
 📚 Sharing stories, experiences and fun from college life
 </p>
 
 </footer>
+
 </body>
 </html>
