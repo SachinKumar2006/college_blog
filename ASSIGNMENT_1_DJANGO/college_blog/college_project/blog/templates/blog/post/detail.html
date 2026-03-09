@@ -3,108 +3,270 @@
 {% block content %}
 
 <style>
-body {
-    background: linear-gradient(to right, #dbeafe, #f0f9ff);
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&display=swap');
+
+:root {
+    --ink: #1c0a00;
+    --muted: #9c6b4e;
+    --accent: #b45309;
+    --accent-light: rgba(180, 83, 9, 0.08);
+    --surface: #fff8f4;
+    --border: #f3d5c0;
+    --bg: #fdf0e8;
+    --rose: #fce7f3;
+    --rose-border: #f9a8d4;
 }
 
+body {
+    background-color: var(--bg);
+    background-image:
+        radial-gradient(ellipse at 20% 10%, rgba(251, 191, 36, 0.10) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 90%, rgba(244, 114, 182, 0.08) 0%, transparent 50%);
+    font-family: 'Source Serif 4', Georgia, serif;
+}
+
+/* ── POST CONTAINER ── */
 .post-container {
-    width: 70%;
-    margin: 40px auto;
-    background-color: #ffffff;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
-    transition: 0.3s;
+    width: 68%;
+    max-width: 800px;
+    margin: 48px auto;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    box-shadow: 0 4px 28px rgba(180, 83, 9, 0.09);
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .post-container:hover {
-    transform: scale(1.01);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 40px rgba(180, 83, 9, 0.13);
+}
+
+/* ── TOP ACCENT BAR ── */
+.post-container::before {
+    content: '';
+    display: block;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent), #fbbf24);
+}
+
+/* ── POST HEADER ── */
+.post-header {
+    padding: 36px 48px 28px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
 }
 
 h2 {
-    text-align: center;
-    color: #1e3a8a;
-    margin-bottom: 15px;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    margin: 0 0 20px;
 }
 
+/* ── META ROW ── */
 .meta {
-    text-align: center;
-    color: #555;
-    font-size: 14px;
-    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin: 0;
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12.5px;
+    font-weight: 300;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+}
+
+.meta-item strong {
+    color: var(--ink);
+    font-weight: 400;
+}
+
+.meta-divider {
+    color: var(--border);
+    font-size: 18px;
+}
+
+/* ── POST BODY ── */
+.post-body-wrap {
+    padding: 32px 48px 28px;
 }
 
 .post-body {
+    font-size: 16.5px;
+    line-height: 1.85;
+    color: #2d1a0e;
+    font-weight: 300;
+    letter-spacing: 0.01em;
+}
+
+.post-body::first-letter {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.6rem;
+    font-weight: 700;
+    color: var(--accent);
+    float: left;
+    line-height: 0.8;
+    margin: 6px 10px 0 0;
+}
+
+/* ── TAGS ── */
+.tags {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 28px;
+    font-size: 13px;
+    color: var(--muted);
+}
+
+.tags span {
+    background: var(--accent-light);
+    color: var(--accent);
+    padding: 4px 12px;
+    border-radius: 2px;
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border: 1px solid var(--border);
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.tags span:hover {
+    background: var(--rose);
+    border-color: var(--rose-border);
+}
+
+/* ── DIVIDER ── */
+.post-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 28px 0;
+}
+
+/* ── SHARE ROW ── */
+.share-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.share-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border: 1px solid var(--border);
+    border-radius: 50%;
     font-size: 16px;
-    line-height: 1.7;
-    color: #333;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s, transform 0.15s;
+}
+
+.share-icon:hover {
+    border-color: var(--accent);
+    background: var(--accent-light);
+    transform: translateY(-2px);
+}
+
+/* ── BACK BUTTON ── */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 9px 22px;
+    border-radius: 2px;
+    font-family: 'Source Serif 4', serif;
+    font-size: 13px;
+    font-weight: 300;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s, color 0.2s, border-color 0.2s;
+}
+
+.btn-primary {
+    background: var(--ink);
+    color: #fdf0e8;
+    border: 1px solid var(--ink);
     margin-top: 20px;
 }
 
-.back-btn {
-    display: inline-block;
-    margin-top: 25px;
-    padding: 8px 16px;
-    background-color: #3b82f6;
+.btn-primary:hover {
+    background: var(--accent);
+    border-color: var(--accent);
     color: white;
+    transform: translateX(-2px);
     text-decoration: none;
-    border-radius: 6px;
-}
-
-.back-btn:hover {
-    background-color: #1e40af;
-}
-
-.tags span{
-    background:#e0f2fe;
-    padding:4px 8px;
-    border-radius:5px;
-    margin-right:6px;
 }
 </style>
 
 
 <div class="post-container">
 
-<h2>{{ post.title }}</h2>
+    <!-- POST HEADER -->
+    <div class="post-header">
 
-<hr style="width:60%;margin:20px auto;border:1px solid #e5e7eb;">
+        <h2>{{ post.title }}</h2>
 
-<div class="meta">
+        <div class="meta">
+            <div class="meta-item">👤 <strong>{{ post.author }}</strong></div>
+            <span class="meta-divider">|</span>
+            <div class="meta-item">📅 <strong>{{ post.publish }}</strong></div>
+            <span class="meta-divider">|</span>
+            <div class="meta-item">⏱ 2 min read</div>
+        </div>
 
-<p>👤 <strong>Author:</strong> {{ post.author }}</p>
+    </div>
 
-<p>📅 <strong>Published:</strong> {{ post.publish }}</p>
+    <!-- POST BODY -->
+    <div class="post-body-wrap">
 
-<p>⏱ 2 min read</p>
+        <div class="post-body">
+            {{ post.body }}
+        </div>
 
-</div>
+        <!-- TAGS -->
+        <div class="tags" style="margin-top:24px;">
+            🏷️
+            <span>College</span>
+            <span>Campus Life</span>
+            <span>Fun</span>
+        </div>
 
+        <hr class="post-divider">
 
-<div class="post-body">
-{{ post.body }}
-</div>
+        <!-- SHARE -->
+        <div class="share-row">
+            🔗 Share:
+            <span class="share-icon">📘</span>
+            <span class="share-icon">🐦</span>
+            <span class="share-icon">📧</span>
+        </div>
 
-<p class="tags" style="margin-top:20px;">
-🏷️ 
-<span>College</span>
-<span>Campus Life</span>
-<span>Fun</span>
-</p>
+        <!-- BACK BUTTON -->
+        <a href="/blog/" class="btn btn-primary">⬅ Back to Blog</a>
 
-
-<hr style="margin:30px 0;border:1px solid #e5e7eb;">
-
-
-<p>
-🔗 Share this post:
-<span style="margin-left:10px;">📘</span>
-<span style="margin-left:10px;">🐦</span>
-<span style="margin-left:10px;">📧</span>
-</p>
-
-
-<a href="/blog/" class="back-btn">⬅ Back to Blog</a>
+    </div>
 
 </div>
 
